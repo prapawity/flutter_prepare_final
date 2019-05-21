@@ -1,21 +1,60 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/currentUser.dart';
 
+SharedPreferences sharedPreferences;
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return HomePageState();
   }
-
 }
 
-class HomePageState extends State<HomePage>{
+class HomePageState extends State<HomePage> {
+  String data = '';
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    // For your reference print the AppDoc directory
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/data.txt');
+  }
+
+  Future<String> readcontent() async {
+    try {
+      final file = await _localFile;
+      // Read the file
+      String contents = await file.readAsString();
+      this.data = contents;
+      return this.data;
+    } catch (e) {
+      // If there is an error reading, return a default String
+      return 'Error';
+    }
+  }
+
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    readcontent();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home",),centerTitle: true,
+        title: Text(
+          "Home",
+        ),
+        centerTitle: true,
       ),
       body: Container(
         child: ListView(
@@ -23,7 +62,8 @@ class HomePageState extends State<HomePage>{
           children: <Widget>[
             ListTile(
               title: Text('Hello ${CurrentUser.NAME}'),
-              subtitle: Text('this is my quote "${CurrentUser.QUOTE != null ? CurrentUser.QUOTE == '' ? 'ยังไม่มีการระบุข้อมูล' : CurrentUser.QUOTE : 'ยังไม่มีการระบุข้อมูล'}"'),
+              subtitle: Text(
+                  'this is my quote "${CurrentUser.QUOTE != null ? CurrentUser.QUOTE == '' ? 'ยังไม่มีการระบุข้อมูล' : data == '' ? CurrentUser.QUOTE : data : 'ยังไม่มีการระบุข้อมูล'}"'),
             ),
             RaisedButton(
               child: Text("PROFILE SETUP"),
@@ -41,6 +81,13 @@ class HomePageState extends State<HomePage>{
             RaisedButton(
               child: Text("SIGN OUT"),
               onPressed: () {
+                test() async {
+                  sharedPreferences = await SharedPreferences.getInstance();
+                  sharedPreferences.setString('username','');
+                  sharedPreferences.setString('password','');
+                }
+
+                test();
                 CurrentUser.USERID = null;
                 CurrentUser.NAME = null;
                 CurrentUser.AGE = null;
@@ -54,5 +101,4 @@ class HomePageState extends State<HomePage>{
       ),
     );
   }
-
 }
