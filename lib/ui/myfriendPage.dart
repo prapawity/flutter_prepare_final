@@ -16,6 +16,7 @@ class MyfriendPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("My Friend"),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: ListView(

@@ -27,7 +27,7 @@ class ProfilePageState extends State<ProfilePage> {
 
   Future<File> writeContent(String data) async {
     final file = await _localFile;
-    await file.writeAsString('${data} test');
+    await file.writeAsString('${data}');
   }
 
   final _formkey = GlobalKey<FormState>();

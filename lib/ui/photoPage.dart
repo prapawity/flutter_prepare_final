@@ -41,7 +41,7 @@ class Photos {
         albumid: json['albumId'],
         id: json['id'],
         url: json['url'],
-        thumnailurl: json['thumnailurl'],
+        thumnailurl: json['thumbnailUrl'],
         title: json['title']);
   }
 }
@@ -60,16 +60,17 @@ class PhotosFriend extends StatelessWidget {
       appBar: AppBar(
         title: Text("Photos"),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            // RaisedButton(
-            //   child: Text("BACK"),
-            //   onPressed: (){
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            RaisedButton(
+              child: Text("BACK"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            ),
             FutureBuilder(
               future: fetchTodos(this.albumid),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -122,8 +123,9 @@ class PhotosFriend extends StatelessWidget {
                       padding: EdgeInsets.all(5),
                     ),
                     Container(
+                      alignment: Alignment(0, 0),
                         child: Image.network(
-                          '${values[index].url}',
+                          '${values[index].thumnailurl}' ,scale: 1,
                         ))
                   ],
                 ),

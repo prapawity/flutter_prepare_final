@@ -43,7 +43,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   void setState(fn) {
-    // TODO: implement setState
     super.setState(fn);
     readcontent();
   }

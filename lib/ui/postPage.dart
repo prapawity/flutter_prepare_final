@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
+import 'commentPage.dart';
+
 Future<List<Post>> fetchTodos(int userid) async {
   final response = await http.get('https://jsonplaceholder.typicode.com/users/${userid}/posts');
 
@@ -55,17 +57,17 @@ class PostFriend extends StatelessWidget {
     // Use the Todo to create our UI
     return Scaffold(
       appBar: AppBar(
-        title: Text("Post"),centerTitle: true,
+        title: Text("Post"),centerTitle: true,automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            // RaisedButton(
-            //   child: Text("BACK"),
-            //   onPressed: (){
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            RaisedButton(
+              child: Text("BACK"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            ),
             FutureBuilder(
               future: fetchTodos(this.id),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -99,6 +101,14 @@ class PostFriend extends StatelessWidget {
             margin: EdgeInsets.all(5),
             child: new Card(
               child: InkWell(
+                onTap: (){
+                                  Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CommentFriend(postid: values[index].id),
+                ),
+              );
+                },
                 child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

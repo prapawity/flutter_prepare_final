@@ -120,10 +120,14 @@ class LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 15, 30, 0),
           children: <Widget>[
-            Image.asset(
-              "assets/banner.jpg",
-              width: 200,
-              height: 200,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                "assets/banner.jpg",
+                width: 200,
+                height: 200,
+                
+              ),
             ),
             TextFormField(
                 decoration: InputDecoration(

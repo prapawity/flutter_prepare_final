@@ -55,23 +55,24 @@ class AlbumsFriend extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Albums"),centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            // RaisedButton(
-            //   child: Text("BACK"),
-            //   onPressed: (){
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            RaisedButton(
+              child: Text("BACK"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            ),
             FutureBuilder(
               future: fetchTodos(this.id),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return new Text('loading...');
+                    return new Center(child: CircularProgressIndicator(),);
                   default:
                     if (snapshot.hasError){
                       return new Text('Error: ${snapshot.error}');

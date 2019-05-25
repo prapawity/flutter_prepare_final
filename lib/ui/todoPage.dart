@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_prepared/ui/commentPage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -56,16 +57,17 @@ class TodoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Todos"),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            // RaisedButton(
-            //   child: Text("BACK"),
-            //   onPressed: (){
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            RaisedButton(
+              child: Text("BACK"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            ),
             FutureBuilder(
               future: fetchTodos(this.id),
               builder: (BuildContext context, AsyncSnapshot snapshot) {

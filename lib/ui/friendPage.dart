@@ -59,23 +59,24 @@ class FriendPageState extends State<FriendPage>{
     return Scaffold(
       appBar: AppBar(
         title: Text("My Friends"),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            // RaisedButton(
-            //   child: Text("BACK"),
-            //   onPressed: (){
-            //     Navigator.of(context).pushReplacementNamed('/home');
-            //   },
-            // ),
+            RaisedButton(
+              child: Text("BACK"),
+              onPressed: (){
+                Navigator.of(context).pop(context);
+              },
+            ),
             FutureBuilder(
               future: fetchUsers(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return new Text('loading...');
+                    return Container(child: CircularProgressIndicator(),);
                   default:
                     if (snapshot.hasError){
                       return new Text('Error: ${snapshot.error}');
