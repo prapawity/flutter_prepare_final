@@ -15,17 +15,19 @@ class ProfilePage extends StatefulWidget {
 class ProfilePageState extends State<ProfilePage> {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
+    print(directory);
     return directory.path;
   }
 
   Future<File> get _localFile async {
     final path = await _localPath;
+    print(path);
     return File('$path/data.txt');
   }
 
   Future<File> writeContent(String data) async {
     final file = await _localFile;
-    file.writeAsString('${data}');
+    await file.writeAsString('${data} test');
   }
 
   final _formkey = GlobalKey<FormState>();

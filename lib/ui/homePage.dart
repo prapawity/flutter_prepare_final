@@ -33,6 +33,7 @@ class HomePageState extends State<HomePage> {
       // Read the file
       String contents = await file.readAsString();
       this.data = contents;
+      print(data);
       return this.data;
     } catch (e) {
       // If there is an error reading, return a default String
@@ -49,6 +50,9 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      readcontent();
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(
