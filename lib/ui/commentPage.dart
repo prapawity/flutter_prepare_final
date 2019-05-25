@@ -122,7 +122,7 @@ class CommentFriend extends StatelessWidget {
                   ),
                   Padding(padding: EdgeInsets.all(5),),
                   Text(
-                    values[index].email,
+                    '(${values[index].email})',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,),
                   ),
                 ],

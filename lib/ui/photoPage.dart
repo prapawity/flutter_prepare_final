@@ -103,7 +103,6 @@ class PhotosFriend extends StatelessWidget {
             margin: EdgeInsets.all(5),
             child: new Card(
               child: InkWell(
-                onTap: () {},
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
