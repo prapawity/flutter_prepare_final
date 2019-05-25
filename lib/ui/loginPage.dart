@@ -122,12 +122,13 @@ class LoginPageState extends State<LoginPage> {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: Image.asset(
-                "assets/banner.jpg",
-                width: 200,
-                height: 200,
+              // child: Image.asset(
+              //   "assets/banner.jpg",
+              //   width: 200,
+              //   height: 200,
                 
-              ),
+              // ),
+              child: Image.network('https://pbs.twimg.com/profile_images/1111648583462191104/JnfJPVuq_400x400.jpg',width:200,height:200),
             ),
             TextFormField(
                 decoration: InputDecoration(
